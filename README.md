@@ -1,1 +1,0 @@
-# Veri-tabani-y-netim-sistemleri

@@ -1,0 +1,96 @@
+2.Soru
+Benzerlikleri 
+Her iki sistemde veri toplama ihtiyacından doğmuştur
+Her iki sistemde verilere erişmede kolaylık sağlar
+Her iki sistemde de veri güncellemesi yapılabilir ekleme silme vb.
+Farkları
+-Veri işleme yaparken geleneksel dosyalama sistemlerinde manuel işlem gerekebilir ama VTYS de SQL gibi dillerle
+rahatça sorgulama yapılabilir.
+-Veri organizasyonu yapılırken geleneksel dosyalama sistemlerinde dosya ve klasörlerle düzenlenir ama VTYS de 
+tablolar satırlar ve sütunlarla organizasyon yapılır
+-Yedekleme ve kurtarma gibi durumlarda geleneksel dosyalama sistemlerinde manuel olarak yapılması gerekir fakat VTYS de 
+otomatik yedekleme ve kurtarma mekanizmaları bulunur.
+3.Soru
+-Veri tekrarını önler
+-Hassas verilere yetkisiz erişimi önler
+-Otomatik yedekleme sistemleri vardır
+-Büyük miktarda veriyi hızlı bir şekilde işler
+-Verilere ulaşmak çok daha hızlı olur
+-Veriler tutarsız olmaz
+4.soru
+VTYS'nin amacı ise kuruluşla ilgili verileri tutmak amacıyla bir veritabanı oluşturmak,var olan veritabanı üzerinde
+değişiklik yapmak,veritabanının bakım ve yedeklenmesini gerçekleştirmek,verilerin tutulduğu tablolar arası ilişkileri kurmak 
+ve kullanıcı yetkilerini belirlemek amacıyla kullanılan yazılımlardır.
+-Okullarda,Hastanelerde,Hapishanelerde,iş yerlerinde, VTYS'leri kullanılır.
+5.soru
+Tablo:Veri tabanı içindeki verileri taşımak için kullanılır.Tablo satır ve sütünlardan oluşan verilerin depolandığı veritabanı
+elemanıdır.Veri tabanı, içerisinde barındırmış olduğu verileri tablolar halinde tutmaktadır.
+Satır ve sütun:Tabloyu oluşturan temel kavramlardır.Bir tablo satır ve sütunlardan oluşmaktadır.Sütun tablo içerisinde 
+tutulan her bir veri türüne verilen isimdir.Bir tablo içerisinde birden fazla kullanılmamaktadır.Satır,tablo içerisinde 
+sutüna ait veri grubudur.
+6.Soru
+Primary Key:Tabloda tutulan verilerin benzersiz yani aynı değeri iki kez içermeyecek olan sütun birincil anahtar olarak belirlenir.
+Foreign Key:Yabancı anahtar bir sütun veya birden fazla sütunun birleşiminden oluşabilir.Birincil anahtar veya tekil anahtarda olduğu gibi
+sütunu Yabancı Anatar olarak belirleme söz konusu değildir.
+Birincil Anahtar ve Yabancı Anahtar Arasındaki Farklar
+-Birincil anahtar, bir tabloda her kaydı benzersiz olarak tanımlayan sütundur, yabancı anahtar ise başka bir tablodaki birincil anahtara referans olan sütundur.
+-Birincil anahtar benzersiz olmalıdır ve aynı değerden iki tane bulunamaz, ancak yabancı anahtar tekrar edebilir.
+-Birincil anahtar, tablodaki verileri doğrudan tanımlamak için kullanılır, yabancı anahtar ise tablolar arasında bağlantı kurmak için kullanılır.
+7.Soru
+1-Veritabanı Yöneticisi
+-veri tabanı yönetiminden sorumlu kişidir
+2-Sistem Geliştiricisi 
+-veritabanı yapsını tasarlar geliştirir.
+-SQL sorguları ve prosedürleri yazar.
+3-Uygulama Geliştiricisi.
+-Veritabanı kullanan uygulamaları geliştirir.
+-Veritabanı ile uygulama arasında veri alışverişi sağlar.
+4-Veri analisti 
+-Verileri analiz ederek raporlar ve istatistikler oluşturur.
+5-Son kullanıcı
+-Hazırlanan uygulamalar veya sistemler üzerinden veritabanını kullanır.
+-Yetkisine göre verileri düzenleyebilir.
+8.Soru
+
+
+                ┌───────────────────────────┐
+                │    Veritabanı Yöneticisi   │
+                │   (Tüm Yetkilere Sahip)    │
+                └───────────┬───────────────┘
+                            │
+       ┌────────────────────┴────────────────────┐
+       │                                         │
+┌───────────────────                   ┌───────────────────┐
+│ Sistem Geliştiricisi │                 │ Uygulama Geliştiricisi│
+│ (CREATE, ALTER, DROP)│            │ (SELECT, INSERT, UPDATE, DELETE) │
+└──────────────┬────┘                    └──────────┬────────┘
+               │                                    │
+┌──────────────┴───────────────┐            ┌──────────────┴───────────────┐
+│       Akademik Personel        │            │        Veri Analisti        │
+│   (SELECT, INSERT, UPDATE)      │            │         (SELECT)            │
+└──────────────┬────────────────┘            └────────────────────────────┘
+               │
+      ┌─────────────┴──────────────┐
+      │         Öğrenci           │
+      │         (SELECT)          │
+      └──────────────────────────┘
+
+9.soru
+-Veritabanı verilerin düzenli bir şekilde saklandığı yapıdır. Veritabanı Yönetim Sistemi (VTYS) ise bu veritabanlarını oluşturmak, 
+yönetmek ve kontrol etmek için kullanılan yazılımdır.
+-Veritabanı yalnızca verileri içerir, yani tablolar, kayıtlar ve ilişkiler gibi öğelerden oluşur. VTYS ise veritabanına erişimi kolaylaştıran araçları, 
+güvenliği, yedeklemeyi ve veri işleme işlemlerini yönetir.
+-Veritabanı, doğrudan kullanıcı ile etkileşime girmez; sadece verileri depolar. VTYS ise kullanıcıların veritabanına sorgular göndermesini, 
+verileri düzenlemesini ve yönetmesini sağlar.
+
+10.soru
+-İlişkisel veri modeli, verilerin tablolar (ya da ilişkiler) şeklinde düzenlendiği bir veri modelidir.
+-Bu modelde, veriler birbirleriyle belirli ilişkiler kurarak organize edilir. Veritabanında bulunan her tablo, bir veya daha fazla sütun (veya alan) içerir ve her satır (veya kayıt),
+ belirli bir veri noktasını temsil eder.
+
+11.soru
+Öğrenciler ile Öğrenci Ders Kayıtları tablosu arasında bir-çok (1:N) ilişkisi vardır. Bir öğrenci birçok derse kayıt olabilir.
+Dersler ile Öğrenci Ders Kayıtları tablosu arasında bir-çok (1:N) ilişkisi vardır. Bir dersin birçok öğrencisi olabilir.
+Dersler ile Öğretmen tablosu arasında bir-çok (1:N) ilişkisi vardır. Bir öğretim üyesi birçok derse girebilir.
+
+
