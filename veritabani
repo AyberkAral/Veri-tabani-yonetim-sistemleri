@@ -1,58 +1,101 @@
-use kutuphane - 
-create table adresler(
-adresNo int not null identity(1,1) primary key,
-sehir nvarchar (100),
-cadde nvarchar (100),
-mahalle nvarchar (100),
-binaNo int,
-postaKodu int,
-ulke nvarchar (100),
+create table kitaplar(
+ISBN int not null primary key,
+sayfaSayisi int,
+kitapAdi nvarchar(100) not null,
+yayinTarihi nvarchar(100)
+);
+
+create table kutuphane(
+KutuphaneNo int not null primary key identity(1,1),
+KutuphaneIsmi nvarchar(50) not null,
+Acıklama nvarchar(50),
+
 );
 
 
---create database kutuphane;
-use kutuphane
+create table yazarlar(
+YazarNo int not null primary key identity(1,1),
+YazarAdi nvarchar(100),
+YazarSoyadi nvarchar(100),
+
+);
+
+create table Yazar(
+yazarid int not null primary key identity(1,1),
+YazarNo int Foreign Key(YazarNo) REFERENCES yazarlar(YazarNo),
+ISBN int Foreign Key (ISBN) references kitaplar(ISBN),
+
+
+);
+
+
+create table kategoriler(
+kategoriNo int not null primary key identity(1,1),
+kategoriAdi nvarchar(100),
+
+
+
+
+);
+
+
+create table kategoriBulunur(
+id int not null primary key identity(1,1),
+ISBN int Foreign Key (ISBN) references kitaplar(ISBN),
+kategoriNo int Foreign Key(kategoriNo) REFERENCES kategoriler(kategoriNo),
+
+);
+
+
 create table uyeler(
 uyeNo int not null identity(1,1) Primary Key,
 uyeAdi nvarchar(50) not null,
 uyeSoyadi nvarchar(50) not null,
-uyeEposta nvarchar(100) ,
-uyeCinsiyeti char (2) ,
-uyeTel nvarchar(100),
-adresNo int foreign Key(adresNo)references adresler(adresNo)
+eposta nvarchar(100),
+telefon nvarchar(100),
+cinsiyet char(2),
+adresNO int Foreign Key(adresNo) REFERENCES adresler(adresNO)
 );
 
 
-use kutuphane
-create table kutuphane_t(
-kutuphaneNo int not null identity(1,1) primary key,
-kutuphaneismi nvarchar(100),
-acıklama nvarchar (150),
-adresNo int foreign key
-(adresNo) references adresler(adresNo),
-);
-
-
-
-use kutuphane
 create table emanet(
-emanetNo int not null identity(1,1) primary key,
-emanetTarihi not null nvarchar(100),
-teslimTarihi not null nvarchar(100),
-uyeNo int foreign key (uyeNo) references uyeler(uyeNo),
-KutuphaneNo int foreign key kutuphane_t(KutuphaneNo)
-isbn int foreign key (isbn) references kitaplar(isbn)
-)
-
-
-
-
-
-
-use kutuphane
-create table kitaplar(
-isbn int not null  primary key,
-SayfaSayısı int,
-kitapAdi nvarchar(100) not null,
-yayinTarihi nvarchar(100),
+emanetNO int not null identity(1,1) Primary Key,
+emanetTarihi nvarchar(100),
+teslimTarihi nvarchar(100),
+uyeNo int Foreign Key (uyeNo) references uyeler(uyeNo),
+KutuphaneNo int Foreign Key (kutuphaneNo) references kutuphane (kutuphaneNo),
+ISBN int Foreign Key (ISBN) references kitaplar(ISBN)
 );
+
+
+create table bulunur(
+bulunurid int not null primary key identity(1,1),
+KutuphaneNo int Foreign Key(KutuphaneNo) REFERENCES kutuphane(KutuphaneNo),
+ISBN int Foreign Key (ISBN) references kitaplar(ISBN),
+);
+
+
+create table Adresler(
+adresNo int not null identity(1,1) Primary Key,
+sehir nvarchar(100),
+cadde nvarchar(100),
+mahalle nvarchar(100),
+binaNo int,
+postaKodu int,
+ulke nvarchar(100)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
