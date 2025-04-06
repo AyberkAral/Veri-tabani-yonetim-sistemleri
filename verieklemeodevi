@@ -1,0 +1,111 @@
+select *from Adresler
+insert into Adresler values ('kayseri','MustafaKemal','bahçeli Evler',9,38210,'Turkiye')
+insert into Adresler values ('kayseri','istiklal','evler bahçeli',10,38210,'Turkiye')
+insert into Adresler values ('antalya','Ataturk','hürriyet',45,38,'Turkiye')
+insert into Adresler values ('nevşehir','Laikyer','bahçeli Evler',14,38,'Turkiye')
+insert into Adresler values ('kırşehir','Devletçiyer','Köşk',3,38,'Turkiye')
+insert into Adresler values ('Berlin','Nein','yes',23,1,'Almanya')
+insert into Adresler values ('Ankara','İstibdat','KemalPaşa',38,38210,'Turkiye')
+insert into Adresler values ('İstanbul','100.yıl','atakent',9,34,'Turkiye')
+insert into Adresler values ('Mardin','şeyhsaitasılı','yattınmısait',9,38,'Turkiye')
+insert into Adresler values ('Erzurum','KemalPaşa','Atatürk<3',3,38,'Turkiye')
+
+delete from Adresler where adresNo=2
+
+
+
+select *from kitaplar
+insert into kitaplar values(2314,300,'tahtOyunları','01.06.2006')
+insert into kitaplar values(2313,250,'yuzuklerin efendisi kralın donusu','01.06.2000')
+insert into kitaplar values(2315,320,'harry potter felsefe tası','01.06.1994')
+insert into kitaplar values(2316,180,'sherlock holmes','01.06.1999')
+insert into kitaplar values(2317,289,'Nutuk','01.06.1927')
+insert into kitaplar values(2318,267,'türlerin kökeni','01.06.1859')
+insert into kitaplar values(2319,280,'açlık oyunları','01.06.2004')
+insert into kitaplar values(2320,120,'Robinson Cruse','01.06.1996')
+insert into kitaplar values(2321,240,'Denizler altında 20bin fersah','01.06.1870')
+insert into kitaplar values(2322,185,'dünyanın ucundaki fener','01.06.1880')
+
+
+
+select *from kutuphane
+insert into kutuphane_t values ('kayseri merkez kutuphanesi','normal boyut',),
+insert into kutuphane_t values ('konya merkez kutuphanesi','normal boyut',),
+insert into kutuphane_t values ('nevşehir merkez kutuphanesi','normal boyut',),
+insert into kutuphane_t values ('ankara merkez kutuphanesi','normal boyut',),
+insert into kutuphane_t values ('antalya merkez kutuphanesi','normal boyut',),
+insert into kutuphane_t values ('mersin merkez kutuphanesi','normal boyut',),
+insert into kutuphane_t values ('hatay merkez kutuphanesi','kucuk bir kutuphane ',),
+insert into kutuphane_t values ('izmir merkez kutuphanesi','normal boyut',),
+insert into kutuphane_t values ('manisa merkez kutuphanesi','normal boyut',),
+insert into kutuphane_t values ('istanbul merkez kutuphanesi','asırı buyuk kutuphane',)
+
+
+
+
+select *from uyeler
+insert into uyeler values ('ayberk','aral','ayberkaral@gmail.com','5301231321321','E',1)
+insert into uyeler values ('ali','öztürk','aliburak@gmail.com','5301231321321','E',3)
+insert into uyeler values ('furkan','toksöz','furkantoksoz@gmail.com','5301231321321','E',4)
+insert into uyeler values ('barıs','bra','barısbra@gmail.com','5301231321321','E',5)
+insert into uyeler values ('tolga','Paket','tolgapaket@gmail.com','5301231321321','E',6)
+insert into uyeler values ('Ecrin','Yılmaz','ecrinneva@gmail.com','5301231321321','k',7)
+insert into uyeler values ('Aysima','aral','aysimaaral@gmail.com','5301231321321','k',8)
+insert into uyeler values ('Emine','erdoğan','emine@gmail.com','5301231321321','K',9)
+insert into uyeler values ('Mustafa','baktır','mustafabaktır@gmail.com','5301231321321','E',10)
+insert into uyeler values ('Ahmet','aral','ayberkaral@gmail.com','5301231321321','E',11)
+
+
+
+
+
+
+
+
+select *from yazarlar
+insert into yazarlar ('George.R.R.','Martin'),
+insert into yazarlar('jk rowling', 'rowling',)
+insert into yazarlar ('j.k.','tolkien'),
+insert into yazarlar ('Jules .','verne'),
+insert into yazarlar ('Charles.','darwin'),
+insert into yazarlar ('sabahaatin .','ali'),
+
+
+
+
+select *from Yazar
+insert into yazar values (24,104)
+insert into yazar values (23,105)
+insert into yazar values (22,103)
+insert into yazar values (21,103)
+insert into yazar values (20,103)
+insert into yazar values (19,103)
+
+
+
+select *from kategoriler
+insert into kategoriler values('eğlence'),
+insert into kategoriler values('bilim kurgu'),
+insert into kategoriler values('dram'),
+insert into kategoriler values('aksiyon')
+
+
+
+
+
+
+
+
+select *from kategoriBulunur 
+insert into kategoriBulunur values(110,1)
+insert into kategoriBulunur values(109,2)
+insert into kategoriBulunur values(108,3)
+insert into kategoriBulunur values(107,4)
+
+
+
+insert into emanet values ('01042024','01062024',10,1,103),
+insert into emanet values ('01062024','01082024',11,2,104),
+insert into emanet values ('01042024','01062024',12,3,105),
+insert into emanet values ('01092024','01,11,2024',13,4,106),
+insert into emanet values ('01042024','01062024',14,5,107),
