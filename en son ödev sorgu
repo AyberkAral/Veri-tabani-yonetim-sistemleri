@@ -1,0 +1,91 @@
+create database galeri;
+
+create table Müsteri(
+M_No int not null primary key identity(1,1),
+M_Adi nvarchar(50),
+M_Soyadi  nvarchar(50),
+M_Adres nvarchar(50),
+M_Telefon nvarchar(100)
+);
+
+
+create table Arac(
+Arac_No int not null primary key identity(1,1),
+Yıl int,
+Marka  nvarchar(50),
+Model nvarchar(50),
+Plaka nvarchar(100),
+Fiyat nvarchar(50)
+);
+
+create table Satış(
+Sat_No int not null primary key identity(1,1),
+M_No int foreign key(M_No) references Müsteri(M_No),
+Arac_No int foreign key(Arac_No) references Arac(Arac_No),
+Sat_Tarih nvarchar(50),
+Sat_Fiyat int
+);
+
+create table Alım(
+Alim_No int not null primary key identity(1,1),
+M_No int foreign key(M_No) references Müsteri(M_No),
+Arac_No int foreign key(Arac_No) references Arac(Arac_No),
+Alim_Tarih nvarchar(50),
+Alim_Fiyat int
+);
+
+insert into Müsteri values('Ayberk','aral','Kayseri/hacılar','1456789054')
+insert into Müsteri values('Anıl','Kılıç','antep/Sorgun','168782052')
+insert into Müsteri values('Ali','Candan','Tokat/Turhal','146787074')
+insert into Müsteri values('Merlin','Kara','Tokat/Turhal','1456889959')
+insert into Müsteri values('Yaren','Gül','İstanbul/Beşiktaş','1256282052')
+insert into Müsteri values('Ferhat','Yılmaz','Tokat/Zile','1858789858')
+insert into Müsteri values('selami','Kurt','Sivas/Şarkışla','1451719151')
+
+
+
+
+insert into Arac values ('2026','Nissan','note','05 BPVY 3998','820.000');
+insert into Arac values ('2027','Toyota','Corolla','38 BPTY 3838','922.000');
+insert into Arac values ('2028','Mercedes','Benz','05 BPAY 3232','750.000');
+insert into Arac values ('2029','BMW','520d','38 ALIB 2220','1.200.000');
+insert into Arac values ('2029','Toyota','tor','12 aybo 223131','480.000');
+
+
+
+
+insert into Alım values('1','5','15.01.2023','420000')
+insert into Alım values('4','3','11.01.2025','720000')
+insert into Alım values('5','2','22.12.2024','885000')
+insert into Alım values('6','4','11.11.2024','1000000')
+insert into Alım values('7','1','20.02.2025','785000')
+
+
+
+insert into Satış values('1','4','27.12.2024','1150000')
+insert into Satış values('4','5','20.02.2025','465000')
+insert into Satış values('3','1','12.03.2025','810000')
+insert into Satış values('6','2','01.02.2025','918000')
+
+1.Select S.Sat_No,m.M_Adi,m.M_Soyadi from Müsteri as m join Satış as s on m.M_No=s.M_No
+2.select a.Alim_No,m.M_Adi+' '+m.M_Soyadi'Musteri AdSoyad',c.Marka+' '+c.Model 'Arac MarkaModel'from Müsteri as m join Alım as a on M.M_No=a.M_No  join Arac as c on c.Arac_No=a.Arac_No
+3.select count(Alim_No)from Alım
+4.Select s.Sat_No , a.Marka, a.Model from Satış as s join Arac as a on s.Arac_No=a.Arac_No
+5.Select(Select(Select SUM (Alim_Fiyat) From Alım) - (Select SUM(Sat_Fiyat) From Satış) As kartutar ;
+6.SELECT *FROM Alım as a Left JOIN Satış as s ON a.Arac_No = s.Arac_No where s.Arac_No IS NULL;
+7.select  c.Marka,c.model  from Alım as a join Arac as c on c.Arac_No=a.Arac_No --alımı yapılan araba markaları 
+select  c.Marka,c.model  from Satış as s join Arac as c on c.Arac_No=s.Arac_No --satışı yapılan araba markaları 
+select  Count(Alim_No) from Alım -- alımı yapılan araba sayısı
+select  Count(Sat_No) from Satış -- satışı yapılan araba sayısı
+
+9.select c.Marka,c.model,m.M_Adi,m.M_Soyadi from Satış as s join Arac as c on c.Arac_No=s.Arac_No join Müsteri as m on m.M_No=s.M_No where Sat_Fiyat>200000
+10.select *from Satış as s join Müsteri as m on m.M_No=s.M_No join Arac as c on s.M_No=m.M_No where M_Adres='Tokat/Turhal'
+
+
+
+
+
+
+
+
+
