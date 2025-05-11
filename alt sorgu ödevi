@@ -1,0 +1,133 @@
+-- 1. Turgut Özseven’e satılan aracın aynısından başka hangi müşterilere satıldığını bulmak için
+SELECT *
+FROM Musteri
+WHERE Mno IN (
+    SELECT Mno
+    FROM Satis
+    WHERE Aracno = (
+        SELECT Aracno
+        FROM Satis
+        WHERE Mno = (
+            SELECT Mno
+            FROM Musteri
+            WHERE Madi = 'Turgut' AND Msoyadi = 'Özseven'
+        )
+    )
+    AND Mno != (
+        SELECT Mno
+        FROM Musteri
+        WHERE Madi = 'Turgut' AND Msoyadi = 'Özseven'
+    )
+);
+
+-- 2. Satış yapılan araçların bilgilerini listelemek için
+SELECT *
+FROM Arac
+WHERE Aracno IN (
+    SELECT DISTINCT Aracno
+    FROM Satis
+);
+
+-- 3. Satış tutarı alım tutarından düşük olan araçları listelemek için
+SELECT *
+FROM Arac
+WHERE Aracno IN (
+    SELECT S.Aracno
+    FROM Satis S
+    JOIN Alim A ON S.Aracno = A.Aracno
+    WHERE S.Sfiyat < A.Afiyat
+);
+
+-- 4. Opel marka araç yapılan satışların ve alımların hangi müşterilerle yapıldığını bulmak için
+SELECT *
+FROM Musteri
+WHERE Mno IN (
+    SELECT Mno
+    FROM Satis
+    WHERE Aracno IN (
+        SELECT Aracno
+        FROM Arac
+        WHERE Marka LIKE '%Opel%'
+    )
+)
+OR Mno IN (
+    SELECT Mno
+    FROM Alim
+    WHERE Aracno IN (
+        SELECT Aracno
+        FROM Arac
+        WHERE Marka LIKE '%Opel%'
+    )
+);
+
+-- 5. Araç fiyatı 20000’den yüksek olan araçların hangi fiyata satıldığını bulmak için
+SELECT Aracno, Fiyat AS AracFiyati, (
+    SELECT Sfiyat
+    FROM Satis
+    WHERE Satis.Aracno = Arac.Aracno
+    LIMIT 1
+) AS SatisFiyati
+FROM Arac
+WHERE Fiyat > 20000;
+
+-- 6. Turhal ve Amasya’ya yapılan satışların toplam tutarını azalan sırada listelemek için
+SELECT Madres, (
+    SELECT SUM(Sfiyat)
+    FROM Satis
+    WHERE Satis.Mno = M.Mno
+) AS ToplamSatis
+FROM Musteri M
+WHERE Madres LIKE '%Turhal%' OR Madres LIKE '%Amasya%'
+ORDER BY ToplamSatis DESC;
+
+-- 7. Satış veya alım yapılmayan müşterilerin bilgilerini listelemek için
+SELECT *
+FROM Musteri
+WHERE Mno NOT IN (
+    SELECT Mno FROM Satis
+)
+AND Mno NOT IN (
+    SELECT Mno FROM Alim
+);
+
+-- 8. 5. ve 6. ayda yapılan satışların kimlere yapıldığını bulmak için
+SELECT *
+FROM Musteri
+WHERE Mno IN (
+    SELECT Mno
+    FROM Satis
+    WHERE MONTH(STR_TO_DATE(Sat_tarih, '%d.%m.%Y')) IN (5, 6)
+);
+
+-- 9. Aynı marka araç alan müşterileri ve aldığı araç markasını listelemek için
+SELECT Madi, Msoyadi, (
+    SELECT Marka
+    FROM Arac
+    WHERE Arac.Aracno = A.Aracno
+    LIMIT 1
+) AS Marka
+FROM Alim A
+JOIN Musteri M ON A.Mno = M.Mno
+WHERE A.Aracno IN (
+    SELECT Aracno
+    FROM Arac
+    WHERE Marka IN (
+        SELECT Marka
+        FROM Arac
+        GROUP BY Marka
+        HAVING COUNT(*) > 1
+    )
+);
+
+-- 10. En yüksek fiyata satılan aracın marka, fiyat ve kime satıldığı bilgisini listelemek için
+SELECT Marka, Sfiyat, (
+    SELECT CONCAT(Madi, ' ', Msoyadi)
+    FROM Musteri
+    WHERE Musteri.Mno = Satis.Mno
+    LIMIT 1
+) AS Musteri
+FROM Arac
+JOIN Satis ON Arac.Aracno = Satis.Aracno
+WHERE Sfiyat = (
+    SELECT MAX(Sfiyat)
+    FROM Satis
