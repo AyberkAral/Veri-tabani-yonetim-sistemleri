@@ -1,0 +1,66 @@
+create database eTicaret 
+create table users(
+UserİD int primary key not null identity (1,1),
+username nvarchar(50) not null ,
+Userpassword nvarchar(50),
+UserSurname nvarchar(50),
+Useremail nvarchar(50),
+Gender nvarchar(2),
+birthdate datetime,
+createDate time ,
+TelNo1 int,
+TelNo2 int,
+
+
+
+);
+
+create table orders(
+OrderID int primary key not null identity (1,1),
+UserID int foreign key (UserID) references Users(UserID),
+Orderdate datetime ,
+totalPrice nvarchar(50),
+Orderstatus nvarchar (50),
+AdressİD int foreign key (AdressİD) references Adress(AdressID),
+
+
+);
+
+
+create table orderDetails(
+DetailsID int primary key not null identity(1,1),
+OrderID int foreign(OrderID) key not null references Orders(OrderID),
+ItemID int foreign key (ItemID)references Items(ItemİD),
+amount int,
+UnitPrice int,
+LinetTotal int,
+
+create table adress(
+AdressId int primary key not null identity (1,1),
+UserID int foreign key (UserID) not null references Users(UserID),
+CountryID int foreign key (CountryID) references Cities(CountryID),
+TownID int foreign key (TownID) references Towns(TownID),
+DistirictID int foreign key (DistirictID) references Distirics(DistirickID),
+PostalCode int not null,
+Adresstext int );
+
+
+create table cities(
+CityId int primary key not null identity(1,1),
+CountryID int foreign key (CountryID) references Countries(CountryID),
+city nvarchar(50),
+);
+
+create table Countries( 
+CountryID int primary key not null identity (1,1),
+Counrty nvarchar(50),
+);
+Create table towns (
+TownID int primary key not null identity (1,1),
+CityID int foreign key (CityID) references Cities(CityID),
+Town nvarchar(50)
+);
+create table distirics (
+DistiricID int primary key  not null identity (1,1), 
+TownID int foreign key (TownID) references Towns(TownID),
+);
