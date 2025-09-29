@@ -1,0 +1,37 @@
+use ETRADE
+
+delete from USERS where USERNAME_ = 'N_OZSIMITCI';
+select *from USERS
+
+
+
+
+
+select CITY, SUM(LINETOTAL)
+from SALEORDERS
+--join 
+--where 
+group by CITY --varsa aynısı üstte 
+order by CITY
+--
+select CITY, MONTH_, SUM(LINETOTAL)
+from SALEORDERS
+--join 
+--where 
+group by CITY , MONTH_
+order by CITY  ,MONTH_
+----
+SELECT CITY, DAYOFWEEK_, SUM(LINETOTAL)
+FROM SALEORDERS
+group by CITY , DAYOFWEEK_
+order by CITY  ,DAYOFWEEK_
+---------
+
+SELECT CITY, 
+select sum (linetotal) from SALEORDERS where City=S.City and DAYOFWEEK_='01.Pzt') AS PAZARTESI,
+select sum (linetotal) from SALEORDERS where City=S.City and DAYOFWEEK_='02.SAL') AS SALI,
+select sum (linetotal) from SALEORDERS where City=S.City and DAYOFWEEK_='03.CAR') AS CARSAMBA,
+select sum (linetotal) from SALEORDERS where City=S.City and DAYOFWEEK_='04.PER') AS PERSEMBE,
+select sum (linetotal) from SALEORDERS where City=S.City and DAYOFWEEK_='05.CUM') AS CUMA,
+select sum (linetotal) from SALEORDERS where City=S.City and DAYOFWEEK_='06.CMT') AS CUMARTESI,
+select sum (linetotal) from SALEORDERS where City=S.City and DAYOFWEEK_='07.PAZ') AS PAZAR,
