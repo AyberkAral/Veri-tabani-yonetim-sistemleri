@@ -1,0 +1,112 @@
+create database Eticaret;
+
+
+create table Users(
+UserID int primary key not null identity(1,1),
+UserName nvarchar(50),
+UserPassword nvarchar(50),
+NameSurname nvarchar(80),
+Email nvarchar(50),
+Gender nvarchar(2),
+BırthDate datetime,
+createDate datetime,
+TelNR1 int,
+TelNR2 int
+);
+
+create table Orders(
+OrderID int primary key not null identity(1,1),
+UserID int foreign key (UserID) references Users(UserID),
+OrderDate datetime,
+TotalPrice nvarchar(50),
+OrderStatus nvarchar(50),
+AdressID int foreign key (AdressID) references Addres(AdressID)
+);
+
+
+create table OrderDetails(
+DetailsID int primary key not null identity(1,1),
+OrderID int foreign key (OrderID) references Orders(OrderID),
+ItemID int foreign key (ItemID) references Items(ItemID),
+Amount int,
+UnıtPrice int,
+LineTotal int,
+);
+
+create table Items(
+ItemID int primary key not null identity(1,1),
+ItemCode int not null,
+ItemName nvarchar(50),
+UnitPrice int,
+Category1 nvarchar(50),
+Category2 nvarchar(50),
+Category3 nvarchar(50),
+Category4 nvarchar(50),
+Brand nvarchar(50)
+);
+
+create table Addres(
+AdressID int primary key not null identity(1,1),
+UserID int foreign key (UserID) references Users(UserID),
+CountryID int foreign key (CountryID) references Countries(CountryID),
+CityID int foreign key (CityID) references Cities(CityID),
+TownID int foreign key (TownID) references Towns(TownID),
+DistrictID int foreign key (DistrictID) references Districts(DistrictID),
+PostalCode int not null,
+AddresText nvarchar(50)
+);
+
+create table Cities(
+CityID int primary key not null identity(1,1),
+CountryID int foreign key (CountryID) references Countries(CountryID),
+City nvarchar(50),
+);
+
+create table Countries(
+CountryID int primary key not null identity(1,1),
+Country nvarchar(50),
+);
+
+create table Towns(
+TownID int primary key not null identity(1,1),
+CityID int foreign key (CityID) references Cities(CityID),
+Town nvarchar(60)
+);
+
+create table Districts(
+DistrictID int primary key not null identity(1,1),
+TownID int foreign key (TownID) references Towns(TownID),
+District nvarchar(60)
+
+--------------------------------------------------
+
+);
+
+
+Create table Invoices(
+invoiceID int primary key not null identity(1,1),
+OrderID int foreign key (OrderID) references Orders(OrderID),
+AdressID int foreign key (AdressID) references Addres(AdressID),
+cargoficheno int,
+totalprice int,
+);
+
+create table invoiceDetails(
+invoiceDetailsID int primary key not null identity(1,1),
+invoiceID int,
+OrderDetailID int,
+itemID int , 
+Unitprice int,
+LineTotal int,
+);
+
+Create table payments(
+PaymentID int primary key not null identity(1,1),
+OrderID int foreign key (OrderID) references Orders(OrderID),
+PaymentType nvarchar(10),
+PaymentDate Date,
+isok bit,
+approvecode nvarchar(50),
+PaymentTotal int, 
+);
+
