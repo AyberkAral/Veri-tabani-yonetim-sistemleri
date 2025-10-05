@@ -1,0 +1,41 @@
+
+Soru 5.
+
+SELECT 
+    City,
+    Category,
+    SUM(TotalPrice) AS TotalSales
+FROM ORDERSALES
+GROUP BY City, Category
+ORDER BY City, TotalSales DESC;
+
+
+----------------------------------------------------------------
+Soru 6.
+WITH CityCategorySales AS (
+    SELECT 
+        C.CITY AS CITY,
+        I.CATEGORY1 AS CATEGORY1,
+        SUM(OD.LINETOTAL) AS TOTALSALE,
+        ROW_NUMBER() OVER (
+            PARTITION BY C.CITY 
+            ORDER BY SUM(OD.LINETOTAL) DESC
+        ) AS rn
+    FROM ORDERDETAILS OD
+    JOIN ORDERS O ON OD.ORDERID = O.ID
+    JOIN ITEMS I ON OD.ITEMID = I.ID
+    JOIN ADDRESS A ON O.ADDRESSID = A.ID
+    JOIN CITIES C ON A.CITYID = C.ID
+    GROUP BY C.CITY, I.CATEGORY1
+)
+SELECT 
+    CITY,
+    CATEGORY1,
+    TOTALSALE
+FROM CityCategorySales
+WHERE rn <= 5
+ORDER BY CITY, TOTALSALE DESC;
+
+
+
+
